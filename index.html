@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+	<title>Переходи на HTTPS!</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/bright/styles/screen.css">
+	<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="full">
+
+<header class="caption">
+	<h1>Переходи на&nbsp;HTTPS!</h1>
+
+	<p>Владимир Кузнецов (<a href="http://twitter.com/mista_k">@mista_k</a>), Graph</p>
+</header>
+
+<section class="slide intro shout" id="intro">
+	<div>
+		<h3 style="margin-top: 36px;">Переходи на&nbsp;HTTPS!</h3>
+		<p>
+			Владимир Кузнецов,
+			<a target="_blank" href="http://twitter.com/mistakster">@mistakster</a>,
+			Graph
+		</p>
+		<p style="margin-bottom: 0;">ChellyJS #1, июнь 2015</p>
+	</div>
+</section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/meteoskynet-url.png" class="place t" />
+</div></section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/meteoskynet-cert.png" class="place t" />
+</div></section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/mediumcom-url.png" class="place t" />
+</div></section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/mediumcom-cert.png" class="place t" />
+</div></section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/sha1-cert.png" class="place t" />
+</div></section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/cert-wrong.png" class="place t" />
+</div></section>
+
+<section class="slide illustration"><div>
+	<img src="assets/images/cert-expired.png" class="place t" />
+</div></section>
+
+<section class="slide"><div>
+	<h2>Как получить сертификат</h2>
+	<ul>
+		<li class="next">выбираем центр сертификации<br>(Certification Authority или CA);</li>
+		<li class="next">генерируем приватный ключ;</li>
+		<li class="next">генерируем запрос на выдачу сертификата<br>(Certificate Signing Request или CSR);</li>
+		<li class="next">отправляем запрос в центр сертификации.</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>Чек-лист</h2>
+	<ul>
+		<li class="next">длина ключа &ge; 2048 бит;</li>
+		<li class="next">алгоритм подписи сертификата SHA256;</li>
+		<li class="next">есть все промежуточные сертификаты;</li>
+		<li class="next">включены правильные наборы шифров;</li>
+		<li class="next">DH params &ge; 2048 бит;</li>
+		<li class="next">включен Online Certificate Status Protocol (OCSP stapling);</li>
+		<li class="next">заголовок <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security">Strict-Transport-Security</a> (HSTS).</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>Генератор конфигурации</h2>
+	<p><a target="_blank" href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">mozilla.github.io/server-side-tls/ssl-config-generator</a></p>
+	<p>Серверы: Apache, Nginx, HAProxy, AWS ELB.</p>
+	<p>Набор протоколов и шифров в зависимости от выбранной категории браузеров (новые, популярные, старые).</p>
+</div></section>
+
+<section class="slide illustration"><div>
+	<h2 style="width: 50%;">Аудит настроек сервера</h2>
+	<p><a target="_blank" href="https://www.ssllabs.com/ssltest/">www.ssllabs.com/ssltest</a></p>
+	<img src="assets/images/ssllabs-audit.png" class="place r" style="width: 60%; right: -10%" />
+</div></section>
+
+<section class="slide shout"><div>
+	<h2>Зачем вообще нужен HTTPS?</h2>
+</div></section>
+
+<section class="slide"><div>
+	<h2>С точки зрения пользователя</h2>
+	<p>Наличие HTTPS на сайте вселяет некую надежду, что:</p>
+	<ul>
+		<li>пароли или номера банковских карт и другая персональная информация не будет перехвачена по сети;</li>
+		<li>мне не подсунут фишинговый сайт.</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>С точки зрения бизнеса</h2>
+	<ul>
+		<li>одни сплошные расходы!</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>С точки зрения бизнеса</h2>
+	<ul>
+		<li><span style="text-decoration: line-through">одни сплошные расходы!</span></li>
+		<li>лояльность пользователей;</li>
+		<li>Google показывает HTTPS-сайт выше в поисковой выдаче.</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>С точки зрения разработчика</h2>
+	<ul>
+		<li>протоколы SPDY и HTTP/2;</li>
+		<li>Service Workers.</li>
+	</ul>
+	<p class="next">Разработчики браузеров планируют давать доступ к&nbsp;новым технологиям только при наличии защищенного соединения&nbsp;&mdash;
+		&laquo;<a target="_blank" href="https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/">Deprecating Non-Secure HTTP</a>&raquo;</p>
+</div></section>
+
+<section class="slide shout"><div>
+	<h2>SPDY и HTTP/2</h2>
+</div></section>
+
+<section class="slide cover"><div>
+	<video preload="auto" autoplay loop style="width: 100%; height: 100%;">
+		<source src="assets/video/http2-demo.mp4" type="video/mp4">
+	</video>
+</div></section>
+
+<section class="slide illustration"><div>
+	<p><a target="_blank" href="https://http2.akamai.com/demo">http2.akamai.com/demo</a></p>
+	<img src="assets/images/dev-tools.png" class="place t" style="width: 100%; top: 160px;">
+</div></section>
+
+<section class="slide"><div>
+	<h2>SPDY и HTTP/2</h2>
+	<ul>
+		<li class="next">экономия на создании подключения и выполнении запроса;</li>
+		<li class="next">приоритезация загрузки ресурсов;</li>
+		<li class="next">загружаем то, что действительно нужно.</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>SPDY и HTTP/2</h2>
+	<p>Доступны в последних версиях браузеров.</p>
+	<p>
+		Поддержка сервере:<br/>
+		SPDY &mdash; Apache, Nginx и многие другие;<br/>
+		HTTP/2 &mdash; OpenLiteSpeed (остальные на подходе).
+	</p>
+</div></section>
+
+<section class="slide shout"><div>
+	<h2>Service Workers</h2>
+</div></section>
+
+<section class="slide"><div>
+	<h2>Service Workers</h2>
+	<ul>
+		<li class="next">перехват и&nbsp;обработка сетевых запросов,<br>включая управление кешированием ресурсов;</li>
+		<li class="next">работа в режиме offline;</li>
+		<li class="next">Push-уведомления.</li>
+	</ul>
+</div></section>
+
+<section class="slide"><div>
+	<h2>Service Workers</h2>
+	<p>
+		Статья: <a target="_blank" href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/">Introduction to Service Worker</a><br/>
+		Видео: <a target="_blank" href="http://www.youtube.com/watch?v=d5_6yHixpsQ">Supercharging page load</a>
+	</p>
+</div></section>
+
+<section class="slide shout"><div>
+	<h2>Переходи на&nbsp;HTTPS!</h2>
+</div></section>
+
+<section class="slide" id="contacts"><div>
+	<h2>Владимир Кузнецов</h2>
+	<p>
+		<a href="http://twitter.com/mistakster" target="_blank">@mistakster</a> (English)<br>
+		<a href="http://twitter.com/mista_k" target="_blank">@mista_k</a> (больше про жизнь)
+	</p>
+	<p><a href="http://noteskeeper.ru" target="_blank">noteskeeper.ru</a></p>
+	<p>Слайды презентации: <a href="http://goo.gl/eYKQms">goo.gl/eYKQms</a>
+</div></section>
+
+<div class="progress">
+	<div></div>
+</div>
+<script src="shower/shower.min.js"></script>
+<!-- Copyright © 2015 Владимир Кузнецов -->
+</body>
+</html>
