@@ -11,3 +11,26 @@
 .slide.illustration:after {
 	content: '';
 }
+
+.full .slide .zoom {
+    -webkit-transition: 3s -webkit-transform;
+    transition: 3s transform;
+}
+
+.full .slide .next.active ~ .zoom_3 {
+    -webkit-transform: translate(-50%, 0) scale(3);
+    -ms-transform: translate(-50%, 0) scale(3);
+    transform: translate(-50%, 0) scale(3);
+}
+
+.full .slide .next.active ~ .zoom_2 {
+    -webkit-transform: translate(-50%, 0) scale(2);
+    -ms-transform: translate(-50%, 0) scale(2);
+    transform: translate(-50%, 0) scale(2);
+}
+
+.full .slide .next + .next.active + .zoom {
+    -webkit-transform: translate(-50%, 0) scale(1);
+    -ms-transform: translate(-50%, 0) scale(1);
+    transform: translate(-50%, 0) scale(1);
+}
